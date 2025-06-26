@@ -141,8 +141,9 @@ if __name__ == "__main__":
                     "BIDU","ZM","DOCU","WORK","SNX","EXPE","EBAY","OKE","IDXX","MCHP",
                     "ADSK","FTNT","CTXS","SIRI","DLTR","PAYL","BBWI","PDD","MELI","PCAR",
                     "PLTR","PVH","TMUS","RUBI","KLAC","KHC","EBAY"] 
-
-    stocks = nasdaq_100
+    smi = [''"ABBN.SW","ALC.SW","GEBN.SW","GIVN.SW","HOLN.SW","KNIN.SW","LOGN.SW","LONN.SW","NESN.SW","NOVN.SW","PGHN.SW","CFR.SW","ROG.SW","SIKA.SW","SOON.SW","SLHN.SW","SREN.SW","SCMN.SW","UBSG.SW","ZURN.SW"'']
+    
+    stocks = smi
     results = [get_metrics(ticker) for ticker in stocks]
     df = pd.DataFrame(results)
 
