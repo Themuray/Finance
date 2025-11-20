@@ -131,7 +131,7 @@ def plot_insiders(df):
 
 if __name__ == "__main__":
     MAG7 = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA"]
-    new_list = ["NU", "MELI", "NBIS", "OSCR", "IREN", "MSTR", "SOFI", "HIMS", "LFMD", "DLO", "AMZN", "META", "LMND", "HOOD", "TSLA"]
+    new_list = ["NU", "MELI", "NBIS", "OSCR", "IREN", "MSTR", "SOFI", "HIMS", "LFMD"]
     nasdaq_100 = ["AAPL","MSFT","GOOGL","GOOG","AMZN","NVDA","TSLA","META","ADBE","AVGO", 
                     "INTC","CSCO","CMCSA","NFLX","TXN","QCOM","PEP","COST","TMUS","AMD",
                     "AMGN","ADP","LRCX","MDLZ","ILMN","ASML","ATRI","BKNG","BIIB","CHKP",
@@ -141,9 +141,8 @@ if __name__ == "__main__":
                     "BIDU","ZM","DOCU","WORK","SNX","EXPE","EBAY","OKE","IDXX","MCHP",
                     "ADSK","FTNT","CTXS","SIRI","DLTR","PAYL","BBWI","PDD","MELI","PCAR",
                     "PLTR","PVH","TMUS","RUBI","KLAC","KHC","EBAY"] 
-    smi = [''"ABBN.SW","ALC.SW","GEBN.SW","GIVN.SW","HOLN.SW","KNIN.SW","LOGN.SW","LONN.SW","NESN.SW","NOVN.SW","PGHN.SW","CFR.SW","ROG.SW","SIKA.SW","SOON.SW","SLHN.SW","SREN.SW","SCMN.SW","UBSG.SW","ZURN.SW"'']
-    
-    stocks = new_list
+
+    stocks = nasdaq_100
     results = [get_metrics(ticker) for ticker in stocks]
     df = pd.DataFrame(results)
 
