@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Finance Fundamentals — Swiss Edition</title>
+    <title data-i18n="page.title">Persönliche Finanzen Grundlagen — Schweizer Ausgabe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,21 +11,30 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#hero" class="nav-logo">PF<span class="accent">.</span>ch</a>
+            <a href="#hero" class="nav-logo"><img src="logo_personal_finance.png" alt="PersonalFinance Logo" class="nav-logo-img"></a>
+            <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+                <span class="lang-option active" data-lang="de">DE</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" data-lang="en">EN</span>
+            </button>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#budgeting">Budget</a></li>
-                <li><a href="#emergency">Emergency</a></li>
-                <li><a href="#debt">Debt</a></li>
-                <li><a href="#insurance">Insurance</a></li>
-                <li><a href="#pillars">3 Pillars</a></li>
-                <li><a href="#investing">Investing</a></li>
-                <li><a href="#taxes">Taxes</a></li>
-                <li><a href="#estate">Estate</a></li>
+                <li><a href="#budgeting" data-i18n="nav.budget">Budget</a></li>
+                <li><a href="#emergency" data-i18n="nav.emergency">Notgroschen</a></li>
+                <li><a href="#debt" data-i18n="nav.debt">Schulden</a></li>
+                <li><a href="#insurance" data-i18n="nav.insurance">Versicherungen</a></li>
+                <li><a href="#pillars" data-i18n="nav.pillars">3 Säulen</a></li>
+                <li><a href="#investing" data-i18n="nav.investing">Investieren</a></li>
+                <li><a href="#taxes" data-i18n="nav.taxes">Steuern</a></li>
+                <li><a href="#estate" data-i18n="nav.estate">Nachlass</a></li>
+                <li class="nav-separator"></li>
+                <li><a href="#calculators" data-i18n="nav.tools">Rechner</a></li>
+                <li><a href="#checklist" data-i18n="nav.checklist">Checkliste</a></li>
+                <li><a href="#resources" data-i18n="nav.resources">Ressourcen</a></li>
             </ul>
         </div>
     </nav>
@@ -33,16 +42,21 @@
     <!-- Hero -->
     <section class="hero" id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Personal Finance <span class="accent">Fundamentals</span></h1>
-                <p class="hero-subtitle">A practical guide to building financial stability in Switzerland — from budgeting basics to long-term wealth building.</p>
-                <p class="hero-note">8 core topics, ordered by priority. Start at the top.</p>
-                <a href="#budgeting" class="hero-cta">Start Learning</a>
+            <div class="hero-split">
+                <div class="hero-content">
+                    <h1><span data-i18n="hero.title1">Persönliche Finanzen</span> <span class="accent" data-i18n="hero.title2">Grundlagen</span></h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">Ein praktischer Leitfaden für finanzielle Stabilität in der Schweiz — von den Grundlagen der Budgetierung bis zum langfristigen Vermögensaufbau.</p>
+                    <p class="hero-note" data-i18n="hero.note">8 Kernthemen, nach Priorität geordnet. Beginnen Sie oben.</p>
+                    <a href="#budgeting" class="hero-cta" data-i18n="hero.cta">Jetzt starten</a>
+                </div>
+                <div class="hero-image">
+                    <img src="picture_1.png" alt="Personal finance planning">
+                </div>
             </div>
         </div>
         <div class="disclaimer-bar">
             <div class="container">
-                <p>This website is for <strong>educational purposes only</strong>. It does not constitute financial, investment, or tax advice. Always consult a qualified professional for decisions regarding your personal finances.</p>
+                <p data-i18n-html="disclaimer">Diese Website dient ausschliesslich <strong>Bildungszwecken</strong>. Sie stellt keine Finanz-, Anlage- oder Steuerberatung dar. Konsultieren Sie immer eine qualifizierte Fachperson für Entscheidungen bezüglich Ihrer persönlichen Finanzen.</p>
             </div>
         </div>
     </section>
@@ -55,20 +69,20 @@
                     <span class="topic-number">1</span>
                     <div class="topic-icon">&#128200;</div>
                     <div>
-                        <h2>Budgeting &amp; Cash Flow</h2>
-                        <p class="topic-label">The Foundation</p>
+                        <h2 data-i18n="s1.title">Budgetierung &amp; Cashflow</h2>
+                        <p class="topic-label" data-i18n="s1.label">Das Fundament</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Everything starts here. Before you can save, invest, or optimize taxes, you need a clear picture of what comes in and what goes out each month. Switzerland's high cost of living makes this especially important — rent, Krankenkasse, and daily expenses add up fast.</p>
+                    <p data-i18n="s1.intro">Alles beginnt hier. Bevor Sie sparen, investieren oder Steuern optimieren können, brauchen Sie ein klares Bild davon, was monatlich reinkommt und was rausgeht. Die hohen Lebenshaltungskosten in der Schweiz machen dies besonders wichtig — Miete, Krankenkasse und tägliche Ausgaben summieren sich schnell.</p>
                     <ul class="topic-points">
-                        <li><strong>Track every CHF</strong> — Use an app, spreadsheet, or pen and paper. Categorize fixed costs (rent, insurance, subscriptions) vs. variable costs (food, transport, leisure).</li>
-                        <li><strong>Apply the 50/30/20 rule as a starting point</strong> — 50% needs, 30% wants, 20% savings. Adjust to Swiss reality — housing alone may take 30-40%.</li>
-                        <li><strong>Automate your savings</strong> — Set up standing orders (Dauerauftrag) on payday. Pay yourself first, spend what's left.</li>
-                        <li><strong>Review quarterly</strong> — Your budget isn't static. Review and adjust every few months as income or expenses change.</li>
+                        <li data-i18n-html="s1.p1"><strong>Jeden Franken erfassen</strong> — Verwenden Sie eine App, Tabelle oder Stift und Papier. Kategorisieren Sie Fixkosten (Miete, Versicherungen, Abos) vs. variable Kosten (Essen, Transport, Freizeit).</li>
+                        <li data-i18n-html="s1.p2"><strong>Die 50/30/20-Regel als Ausgangspunkt</strong> — 50% Bedürfnisse, 30% Wünsche, 20% Sparen. An die Schweizer Realität anpassen — allein die Miete kann 30-40% ausmachen.</li>
+                        <li data-i18n-html="s1.p3"><strong>Sparen automatisieren</strong> — Richten Sie Daueraufträge am Zahltag ein. Bezahlen Sie sich selbst zuerst, geben Sie aus, was übrig bleibt.</li>
+                        <li data-i18n-html="s1.p4"><strong>Quartalsweise überprüfen</strong> — Ihr Budget ist nicht statisch. Überprüfen und passen Sie es alle paar Monate an, wenn sich Einkommen oder Ausgaben ändern.</li>
                     </ul>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> You can't improve what you don't measure. A budget is your financial dashboard.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s1.takeaway">Was man nicht misst, kann man nicht verbessern. Ein Budget ist Ihr finanzielles Dashboard.</span>
                     </div>
                 </div>
             </div>
@@ -83,20 +97,20 @@
                     <span class="topic-number">2</span>
                     <div class="topic-icon">&#128737;</div>
                     <div>
-                        <h2>Emergency Fund <span class="de">(Notgroschen)</span></h2>
-                        <p class="topic-label">Your Safety Net</p>
+                        <h2 data-i18n="s2.title">Notgroschen</h2>
+                        <p class="topic-label" data-i18n="s2.label">Ihr Sicherheitsnetz</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Life is unpredictable. Job loss, medical emergencies, or unexpected repairs can derail your finances overnight. An emergency fund gives you breathing room so you don't have to go into debt when things go wrong.</p>
+                    <p data-i18n="s2.intro">Das Leben ist unberechenbar. Jobverlust, medizinische Notfälle oder unerwartete Reparaturen können Ihre Finanzen über Nacht aus der Bahn werfen. Ein Notgroschen gibt Ihnen Luft zum Atmen, damit Sie nicht in die Schuldenfalle geraten.</p>
                     <ul class="topic-points">
-                        <li><strong>Target 3-6 months of expenses</strong> — In Switzerland, that might mean CHF 10'000-25'000 depending on your situation. Higher if you're self-employed or have dependents.</li>
-                        <li><strong>Keep it liquid</strong> — A regular savings account is fine. Don't invest your emergency fund — you need instant access without market risk.</li>
-                        <li><strong>Build it gradually</strong> — Even CHF 100/month adds up. Start small, stay consistent. This is priority #1 before any investing.</li>
-                        <li><strong>Only touch it for true emergencies</strong> — Job loss, medical bills, essential repairs. Not holidays, not sales, not "opportunities."</li>
+                        <li data-i18n-html="s2.p1"><strong>Ziel: 3-6 Monatsausgaben</strong> — In der Schweiz bedeutet das je nach Situation CHF 10'000-25'000. Mehr, wenn Sie selbstständig sind oder Angehörige haben.</li>
+                        <li data-i18n-html="s2.p2"><strong>Liquide halten</strong> — Ein normales Sparkonto reicht. Investieren Sie Ihren Notgroschen nicht — Sie brauchen sofortigen Zugriff ohne Marktrisiko.</li>
+                        <li data-i18n-html="s2.p3"><strong>Schrittweise aufbauen</strong> — Selbst CHF 100/Monat summieren sich. Klein anfangen, konsequent bleiben. Das ist Priorität Nr. 1 vor jedem Investieren.</li>
+                        <li data-i18n-html="s2.p4"><strong>Nur für echte Notfälle antasten</strong> — Jobverlust, Arztrechnungen, dringende Reparaturen. Nicht für Ferien, nicht für Sales, nicht für «Gelegenheiten».</li>
                     </ul>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> An emergency fund isn't earning returns — it's buying you peace of mind and preventing debt spirals.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s2.takeaway">Ein Notgroschen bringt keine Rendite — er kauft Ihnen Seelenfrieden und verhindert Schuldenspiralen.</span>
                     </div>
                 </div>
             </div>
@@ -111,20 +125,20 @@
                     <span class="topic-number">3</span>
                     <div class="topic-icon">&#9939;</div>
                     <div>
-                        <h2>Debt Management</h2>
-                        <p class="topic-label">Break Free From Bad Debt</p>
+                        <h2 data-i18n="s3.title">Schuldenmanagement</h2>
+                        <p class="topic-label" data-i18n="s3.label">Raus aus den Konsumschulden</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Not all debt is equal. In Switzerland, mortgages are treated differently — many homeowners intentionally keep their mortgage for tax deductibility of interest (Hypothekarzins). But consumer debt like credit cards and personal loans (Kleinkredite) should be eliminated aggressively.</p>
+                    <p data-i18n="s3.intro">Nicht alle Schulden sind gleich. In der Schweiz werden Hypotheken anders behandelt — viele Eigenheimbesitzer behalten ihre Hypothek bewusst wegen der Steuerabzugsfähigkeit der Zinsen (Hypothekarzins). Konsumschulden wie Kreditkarten und Kleinkredite sollten jedoch aggressiv abgebaut werden.</p>
                     <ul class="topic-points">
-                        <li><strong>Prioritize high-interest debt</strong> — Credit cards and Kleinkredite often carry 10-15% interest. Pay these off first (avalanche method) or start with the smallest balance for motivation (snowball method).</li>
-                        <li><strong>Understand Swiss mortgage strategy</strong> — Direct vs. indirect amortization. With indirect amortization, you pay into Pillar 3a instead of reducing the mortgage — getting a tax deduction while maintaining the mortgage interest deduction.</li>
-                        <li><strong>Avoid Leasing traps</strong> — Car leasing is expensive debt in disguise. Run the numbers before committing.</li>
-                        <li><strong>Never take debt for consumption</strong> — If you can't afford it with cash, you can't afford it. The only debatable exception is a mortgage.</li>
+                        <li data-i18n-html="s3.p1"><strong>Hochverzinste Schulden priorisieren</strong> — Kreditkarten und Kleinkredite haben oft 10-15% Zinsen. Zahlen Sie diese zuerst ab (Lawinenmethode) oder beginnen Sie mit dem kleinsten Saldo für die Motivation (Schneeballmethode).</li>
+                        <li data-i18n-html="s3.p2"><strong>Schweizer Hypothekarstrategie verstehen</strong> — Direkte vs. indirekte Amortisation. Bei der indirekten Amortisation zahlen Sie in die Säule 3a ein, statt die Hypothek zu reduzieren — Sie erhalten einen Steuerabzug und behalten den Hypothekarzinsabzug.</li>
+                        <li data-i18n-html="s3.p3"><strong>Leasing-Fallen vermeiden</strong> — Autoleasing ist teure Verschuldung in Verkleidung. Rechnen Sie nach, bevor Sie sich verpflichten.</li>
+                        <li data-i18n-html="s3.p4"><strong>Nie Schulden für Konsum aufnehmen</strong> — Wenn Sie es sich nicht bar leisten können, können Sie es sich nicht leisten. Die einzige diskutable Ausnahme ist eine Hypothek.</li>
                     </ul>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> Eliminate consumer debt ruthlessly. Mortgage debt in Switzerland is a strategic tool — understand the math before over-paying.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s3.takeaway">Eliminieren Sie Konsumschulden konsequent. Hypothekarschulden in der Schweiz sind ein strategisches Instrument — verstehen Sie die Mathematik, bevor Sie überbezahlen.</span>
                     </div>
                 </div>
             </div>
@@ -139,20 +153,20 @@
                     <span class="topic-number">4</span>
                     <div class="topic-icon">&#128737;</div>
                     <div>
-                        <h2>Insurance <span class="de">(Versicherungen)</span></h2>
-                        <p class="topic-label">Protect Against Catastrophe</p>
+                        <h2 data-i18n="s4.title">Versicherungen</h2>
+                        <p class="topic-label" data-i18n="s4.label">Schutz vor Katastrophen</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Insurance exists to protect against events that would be financially devastating. In Switzerland, some insurance is mandatory (Krankenkasse), while others are optional but highly recommended. The key: insure against catastrophic loss, self-insure the small stuff.</p>
+                    <p data-i18n="s4.intro">Versicherungen schützen vor Ereignissen, die finanziell verheerend wären. In der Schweiz sind einige Versicherungen obligatorisch (Krankenkasse), andere optional, aber dringend empfohlen. Der Grundsatz: Versichern Sie sich gegen katastrophale Verluste, tragen Sie das Kleine selbst.</p>
                     <ul class="topic-points">
-                        <li><strong>Krankenkasse — optimize your franchise</strong> — If you're young and healthy, a higher franchise (e.g., CHF 2'500) means lower premiums. But make sure you can cover the franchise if needed. Compare premiums annually on Priminfo.</li>
-                        <li><strong>Privathaftpflicht is essential</strong> — Personal liability insurance costs ~CHF 100/year and protects you if you accidentally cause damage to others. Not mandatory, but a must-have.</li>
-                        <li><strong>Hausratversicherung</strong> — Covers your household contents against fire, water damage, theft. Relatively cheap and worthwhile.</li>
-                        <li><strong>Avoid mixed insurance-investment products</strong> — Life insurance policies bundled with savings (3b Lebensversicherungen) typically have high fees and poor returns. Keep insurance and investing separate.</li>
+                        <li data-i18n-html="s4.p1"><strong>Krankenkasse — Franchise optimieren</strong> — Wenn Sie jung und gesund sind, bedeutet eine höhere Franchise (z.B. CHF 2'500) tiefere Prämien. Stellen Sie aber sicher, dass Sie die Franchise bei Bedarf decken können. Vergleichen Sie die Prämien jährlich auf Priminfo.</li>
+                        <li data-i18n-html="s4.p2"><strong>Privathaftpflicht ist unverzichtbar</strong> — Die Privathaftpflichtversicherung kostet ~CHF 100/Jahr und schützt Sie, wenn Sie versehentlich Schäden bei anderen verursachen. Nicht obligatorisch, aber ein Muss.</li>
+                        <li data-i18n-html="s4.p3"><strong>Hausratversicherung</strong> — Deckt Ihren Hausrat gegen Feuer, Wasserschäden, Diebstahl. Relativ günstig und lohnenswert.</li>
+                        <li data-i18n-html="s4.p4"><strong>Gemischte Versicherungs-Anlageprodukte meiden</strong> — Lebensversicherungen mit Sparanteil (3b Lebensversicherungen) haben typischerweise hohe Gebühren und schlechte Renditen. Halten Sie Versicherung und Investieren getrennt.</li>
                     </ul>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> Insure what would ruin you financially. Skip insurance for things you can cover out of pocket. Review your policies annually.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s4.takeaway">Versichern Sie, was Sie finanziell ruinieren würde. Verzichten Sie auf Versicherungen für Dinge, die Sie selbst tragen können. Überprüfen Sie Ihre Policen jährlich.</span>
                     </div>
                 </div>
             </div>
@@ -167,48 +181,48 @@
                     <span class="topic-number">5</span>
                     <div class="topic-icon">&#127963;</div>
                     <div>
-                        <h2>The Swiss 3-Pillar System <span class="de">(Vorsorge)</span></h2>
-                        <p class="topic-label">The Heart of Swiss Retirement</p>
+                        <h2 data-i18n="s5.title">Das Schweizer 3-Säulen-System (Vorsorge)</h2>
+                        <p class="topic-label" data-i18n="s5.label">Das Herzstück der Schweizer Altersvorsorge</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Switzerland's retirement system is built on three pillars. Understanding how they work together is arguably the most important financial knowledge for anyone living in Switzerland.</p>
+                    <p data-i18n="s5.intro">Das Schweizer Vorsorgesystem basiert auf drei Säulen. Zu verstehen, wie sie zusammenwirken, ist wohl das wichtigste Finanzwissen für alle, die in der Schweiz leben.</p>
 
                     <div class="pillar-grid">
                         <div class="pillar-box">
-                            <h3>1st Pillar <span class="de">(AHV/IV)</span></h3>
-                            <p class="pillar-type">State Pension</p>
+                            <h3 data-i18n="s5.p1.title">1. Säule (AHV/IV)</h3>
+                            <p class="pillar-type" data-i18n="s5.p1.type">Staatliche Vorsorge</p>
                             <ul>
-                                <li>Mandatory for everyone working in Switzerland</li>
-                                <li>Funded by payroll contributions (employee + employer)</li>
-                                <li>Covers basic living needs in retirement</li>
-                                <li>Check for contribution gaps (Beitragslücken) — they permanently reduce your pension</li>
+                                <li data-i18n="s5.p1.l1">Obligatorisch für alle, die in der Schweiz arbeiten</li>
+                                <li data-i18n="s5.p1.l2">Finanziert durch Lohnbeiträge (Arbeitnehmer + Arbeitgeber)</li>
+                                <li data-i18n="s5.p1.l3">Deckt den Grundbedarf im Ruhestand</li>
+                                <li data-i18n="s5.p1.l4">Prüfen Sie auf Beitragslücken — sie reduzieren Ihre Rente dauerhaft</li>
                             </ul>
                         </div>
                         <div class="pillar-box">
-                            <h3>2nd Pillar <span class="de">(BVG/Pensionskasse)</span></h3>
-                            <p class="pillar-type">Occupational Pension</p>
+                            <h3 data-i18n="s5.p2.title">2. Säule (BVG/Pensionskasse)</h3>
+                            <p class="pillar-type" data-i18n="s5.p2.type">Berufliche Vorsorge</p>
                             <ul>
-                                <li>Mandatory for employees earning above the threshold (~CHF 22'050)</li>
-                                <li>Read your pension statement (Vorsorgeausweis) — know your projected retirement income</li>
-                                <li>Voluntary buy-ins (Einkäufe) are one of the best tax deductions available</li>
-                                <li>Compare your PK's investment returns and conversion rate</li>
+                                <li data-i18n="s5.p2.l1">Obligatorisch für Arbeitnehmer mit Einkommen über der Schwelle (~CHF 22'050)</li>
+                                <li data-i18n="s5.p2.l2">Lesen Sie Ihren Vorsorgeausweis — kennen Sie Ihr voraussichtliches Renteneinkommen</li>
+                                <li data-i18n="s5.p2.l3">Freiwillige Einkäufe sind einer der besten Steuerabzüge</li>
+                                <li data-i18n="s5.p2.l4">Vergleichen Sie die Anlagerenditen und den Umwandlungssatz Ihrer PK</li>
                             </ul>
                         </div>
                         <div class="pillar-box highlight-pillar">
-                            <h3>3rd Pillar <span class="de">(Säule 3a)</span></h3>
-                            <p class="pillar-type">Voluntary Tax-Advantaged Savings</p>
+                            <h3 data-i18n="s5.p3.title">3. Säule (Säule 3a)</h3>
+                            <p class="pillar-type" data-i18n="s5.p3.type">Freiwilliges steuerbegünstigtes Sparen</p>
                             <ul>
-                                <li>Max contribution ~CHF 7'056/year (with Pensionskasse, 2024)</li>
-                                <li>Contributions are fully tax-deductible — saves hundreds to thousands in taxes annually</li>
-                                <li>Choose investment solutions (VIAC, Finpension, Frankly) over bank savings accounts for long horizons</li>
-                                <li>Open multiple 3a accounts (up to 5) for staggered withdrawal — reduces progressive capital withdrawal tax</li>
+                                <li data-i18n="s5.p3.l1">Maximaler Beitrag ~CHF 7'056/Jahr (mit Pensionskasse, 2024)</li>
+                                <li data-i18n="s5.p3.l2">Beiträge sind voll steuerabzugsfähig — spart jährlich Hunderte bis Tausende an Steuern</li>
+                                <li data-i18n="s5.p3.l3">Wählen Sie Anlagelösungen (VIAC, Finpension, Frankly) statt Banksparkonten für lange Zeithorizonte</li>
+                                <li data-i18n="s5.p3.l4">Eröffnen Sie mehrere 3a-Konten (bis zu 5) für gestaffelten Bezug — reduziert die progressive Kapitalbezugssteuer</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> Max out your Pillar 3a every year — it's free tax savings. Understand your Pensionskasse statement. Check AHV for gaps. The pillar system is your retirement backbone.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s5.takeaway">Schöpfen Sie Ihre Säule 3a jedes Jahr voll aus — es sind geschenkte Steuerersparnisse. Verstehen Sie Ihren Pensionskassenausweis. Prüfen Sie die AHV auf Lücken. Das Säulensystem ist das Rückgrat Ihrer Altersvorsorge.</span>
                     </div>
                 </div>
             </div>
@@ -223,20 +237,20 @@
                     <span class="topic-number">6</span>
                     <div class="topic-icon">&#128201;</div>
                     <div>
-                        <h2>Investing Basics</h2>
-                        <p class="topic-label">Grow Your Wealth</p>
+                        <h2 data-i18n="s6.title">Investieren Grundlagen</h2>
+                        <p class="topic-label" data-i18n="s6.label">Vermögen aufbauen</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Once your emergency fund is set, debts are managed, and you're maxing Pillar 3a, investing is how you build long-term wealth. Switzerland offers a massive advantage: <strong>no capital gains tax</strong> on private investments.</p>
+                    <p data-i18n-html="s6.intro">Sobald Ihr Notgroschen steht, Schulden im Griff sind und Sie die Säule 3a ausschöpfen, ist Investieren der Weg zum langfristigen Vermögensaufbau. Die Schweiz bietet einen gewaltigen Vorteil: <strong>keine Kapitalgewinnsteuer</strong> für Privatanleger.</p>
                     <ul class="topic-points">
-                        <li><strong>No capital gains tax</strong> — As a private investor in Switzerland, profits from selling stocks, ETFs, or funds are tax-free. This is a huge structural advantage — use it.</li>
-                        <li><strong>Start with broadly diversified index funds/ETFs</strong> — A global ETF (e.g., tracking the MSCI World or FTSE All-World) gives you instant diversification across thousands of companies. Low fees, no stock-picking required.</li>
-                        <li><strong>Understand Verrechnungssteuer</strong> — Swiss dividends have a 35% withholding tax, but you reclaim it via your tax return. Foreign dividends may have non-recoverable withholding depending on tax treaties. Fund domicile matters.</li>
-                        <li><strong>Time in market beats timing the market</strong> — Invest regularly (e.g., monthly), ignore short-term volatility, and let compound interest work over decades. Starting early matters more than starting with a lot.</li>
+                        <li data-i18n-html="s6.p1"><strong>Keine Kapitalgewinnsteuer</strong> — Als Privatanleger in der Schweiz sind Gewinne aus dem Verkauf von Aktien, ETFs oder Fonds steuerfrei. Das ist ein enormer struktureller Vorteil — nutzen Sie ihn.</li>
+                        <li data-i18n-html="s6.p2"><strong>Starten Sie mit breit diversifizierten Indexfonds/ETFs</strong> — Ein globaler ETF (z.B. auf den MSCI World oder FTSE All-World) gibt Ihnen sofortige Diversifikation über Tausende von Unternehmen. Tiefe Gebühren, kein Stock-Picking nötig.</li>
+                        <li data-i18n-html="s6.p3"><strong>Verrechnungssteuer verstehen</strong> — Schweizer Dividenden unterliegen einer 35% Verrechnungssteuer, die Sie über die Steuererklärung zurückfordern. Ausländische Dividenden können je nach Doppelbesteuerungsabkommen nicht rückforderbare Quellensteuern haben. Der Fondsdomizil ist wichtig.</li>
+                        <li data-i18n-html="s6.p4"><strong>Zeit im Markt schlägt Timing</strong> — Investieren Sie regelmässig (z.B. monatlich), ignorieren Sie kurzfristige Volatilität und lassen Sie den Zinseszins über Jahrzehnte wirken. Früh anfangen ist wichtiger als mit viel anfangen.</li>
                     </ul>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> Invest in low-cost, diversified index funds. Take advantage of Switzerland's tax-free capital gains. Start early, stay consistent, think in decades.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s6.takeaway">Investieren Sie in kostengünstige, diversifizierte Indexfonds. Nutzen Sie die steuerfreien Kapitalgewinne der Schweiz. Früh beginnen, konsequent bleiben, in Jahrzehnten denken.</span>
                     </div>
                 </div>
             </div>
@@ -251,23 +265,23 @@
                     <span class="topic-number">7</span>
                     <div class="topic-icon">&#128206;</div>
                     <div>
-                        <h2>Tax Optimization <span class="de">(Steueroptimierung)</span></h2>
-                        <p class="topic-label">Keep More of What You Earn</p>
+                        <h2 data-i18n="s7.title">Steueroptimierung</h2>
+                        <p class="topic-label" data-i18n="s7.label">Mehr von Ihrem Einkommen behalten</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Switzerland's tax system is unique: you pay federal, cantonal, and municipal taxes. Rates vary significantly between cantons and even municipalities. Legal tax optimization can save you thousands per year.</p>
+                    <p data-i18n="s7.intro">Das Schweizer Steuersystem ist einzigartig: Sie zahlen Bundes-, Kantons- und Gemeindesteuern. Die Sätze variieren erheblich zwischen Kantonen und sogar Gemeinden. Legale Steueroptimierung kann Ihnen Tausende pro Jahr sparen.</p>
                     <ul class="topic-points">
-                        <li><strong>Max out Pillar 3a deductions</strong> — The single most impactful tax deduction for most people. Contributing the maximum saves you roughly CHF 1'500-2'500+ in taxes depending on your canton and income.</li>
-                        <li><strong>Consider Pensionskasse buy-ins</strong> — Voluntary contributions (Einkäufe) are fully tax-deductible and can be spread over multiple years for maximum impact. Plan strategically, especially before retirement.</li>
-                        <li><strong>Stagger your 3a withdrawals</strong> — Capital withdrawal tax is progressive. By splitting your 3a across multiple accounts and withdrawing in different tax years, you reduce the tax rate on each withdrawal.</li>
-                        <li><strong>Claim actual costs where possible</strong> — Professional expenses (Berufskosten), commuting, continuing education (Weiterbildung), and home office may exceed the flat-rate deductions. Keep receipts.</li>
+                        <li data-i18n-html="s7.p1"><strong>Säule 3a-Abzüge voll ausschöpfen</strong> — Der wirkungsvollste Steuerabzug für die meisten Menschen. Der maximale Beitrag spart Ihnen je nach Kanton und Einkommen rund CHF 1'500-2'500+ an Steuern.</li>
+                        <li data-i18n-html="s7.p2"><strong>Pensionskassen-Einkäufe erwägen</strong> — Freiwillige Beiträge (Einkäufe) sind voll steuerabzugsfähig und können über mehrere Jahre verteilt werden für maximale Wirkung. Planen Sie strategisch, besonders vor der Pensionierung.</li>
+                        <li data-i18n-html="s7.p3"><strong>3a-Bezüge staffeln</strong> — Die Kapitalbezugssteuer ist progressiv. Indem Sie Ihre 3a auf mehrere Konten aufteilen und in verschiedenen Steuerjahren beziehen, reduzieren Sie den Steuersatz auf jeden Bezug.</li>
+                        <li data-i18n-html="s7.p4"><strong>Effektive Kosten geltend machen</strong> — Berufskosten, Pendeln, Weiterbildung und Homeoffice können die Pauschalabzüge übersteigen. Belege aufbewahren.</li>
                     </ul>
                     <div class="info-note">
-                        <strong>Good to know:</strong> Switzerland has a wealth tax (Vermögenssteuer) on your net assets. This means even unrealized investment gains and savings above a threshold increase your tax bill. It's typically small (0.1-0.5% depending on canton) but worth knowing about.
+                        <strong data-i18n="info.label">Gut zu wissen:</strong> <span data-i18n="s7.info">Die Schweiz erhebt eine Vermögenssteuer auf Ihr Reinvermögen. Das bedeutet, dass auch unrealisierte Anlagegewinne und Ersparnisse über einem Freibetrag Ihre Steuerlast erhöhen. Sie ist typischerweise gering (0,1-0,5% je nach Kanton), aber wissenswert.</span>
                     </div>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> Pillar 3a + Pensionskasse buy-ins are your strongest tools. File your taxes carefully, claim all deductions, and plan 3a withdrawals strategically.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s7.takeaway">Säule 3a + Pensionskassen-Einkäufe sind Ihre stärksten Werkzeuge. Füllen Sie die Steuererklärung sorgfältig aus, machen Sie alle Abzüge geltend und planen Sie 3a-Bezüge strategisch.</span>
                     </div>
                 </div>
             </div>
@@ -282,20 +296,424 @@
                     <span class="topic-number">8</span>
                     <div class="topic-icon">&#128220;</div>
                     <div>
-                        <h2>Estate Planning <span class="de">(Nachlassplanung)</span></h2>
-                        <p class="topic-label">Protect Your Legacy</p>
+                        <h2 data-i18n="s8.title">Nachlassplanung</h2>
+                        <p class="topic-label" data-i18n="s8.label">Ihr Vermächtnis schützen</p>
                     </div>
                 </div>
                 <div class="topic-body">
-                    <p>Nobody likes thinking about this, but estate planning ensures your assets go where you want them to — and protects your loved ones from legal complications. Swiss inheritance law has specific rules about compulsory shares that you need to understand.</p>
+                    <p data-i18n="s8.intro">Niemand denkt gerne darüber nach, aber Nachlassplanung stellt sicher, dass Ihr Vermögen dorthin geht, wo Sie es wollen — und schützt Ihre Angehörigen vor rechtlichen Komplikationen. Das Schweizer Erbrecht hat spezifische Regeln zu Pflichtteilen, die Sie kennen müssen.</p>
                     <ul class="topic-points">
-                        <li><strong>Understand Pflichtteile (compulsory portions)</strong> — Swiss law reserves a minimum share of your estate for certain heirs (spouse, children). You can only freely dispose of the remainder. The 2023 revision increased the freely disposable portion.</li>
-                        <li><strong>Write a will (Testament)</strong> — Must be handwritten, dated, and signed to be valid in Switzerland. Without one, legal succession rules apply automatically — which may not match your wishes.</li>
-                        <li><strong>Update beneficiary designations</strong> — Your 2nd and 3rd pillar assets have separate beneficiary rules. Make sure designations on your Pensionskasse and 3a accounts are up to date, especially after marriage, divorce, or having children.</li>
-                        <li><strong>Consider a marriage or inheritance contract</strong> — An Ehevertrag or Erbvertrag can optimize how assets are distributed, especially for blended families or if you want to favor a surviving spouse.</li>
+                        <li data-i18n-html="s8.p1"><strong>Pflichtteile verstehen</strong> — Das Schweizer Recht reserviert einen Mindestanteil Ihres Nachlasses für bestimmte Erben (Ehepartner, Kinder). Sie können nur über den Rest frei verfügen. Die Revision 2023 hat den frei verfügbaren Anteil erhöht.</li>
+                        <li data-i18n-html="s8.p2"><strong>Ein Testament verfassen</strong> — Muss in der Schweiz handschriftlich, datiert und unterschrieben sein, um gültig zu sein. Ohne Testament gelten die gesetzlichen Erbfolgeregeln automatisch — die möglicherweise nicht Ihren Wünschen entsprechen.</li>
+                        <li data-i18n-html="s8.p3"><strong>Begünstigungen aktualisieren</strong> — Ihre Vermögenswerte der 2. und 3. Säule haben separate Begünstigungsregeln. Stellen Sie sicher, dass die Begünstigungen bei Ihrer Pensionskasse und den 3a-Konten aktuell sind, besonders nach Heirat, Scheidung oder Geburt von Kindern.</li>
+                        <li data-i18n-html="s8.p4"><strong>Ehe- oder Erbvertrag erwägen</strong> — Ein Ehevertrag oder Erbvertrag kann die Vermögensverteilung optimieren, besonders bei Patchworkfamilien oder wenn Sie den überlebenden Ehepartner bevorzugen möchten.</li>
                     </ul>
                     <div class="takeaway">
-                        <strong>Key takeaway:</strong> Write a valid will, keep beneficiary designations current, and understand how Pflichtteile affect your estate. A notary consultation is worth the investment.
+                        <strong data-i18n="takeaway.label">Kernaussage:</strong> <span data-i18n="s8.takeaway">Verfassen Sie ein gültiges Testament, halten Sie Begünstigungen aktuell und verstehen Sie, wie Pflichtteile Ihren Nachlass betreffen. Eine Notarberatung ist die Investition wert.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Interactive Calculators -->
+    <section class="topic-section" id="calculators">
+        <div class="container">
+            <div class="topic-card reveal">
+                <div class="topic-header">
+                    <span class="topic-number">9</span>
+                    <div class="topic-icon">&#128425;</div>
+                    <div>
+                        <h2 data-i18n="calc.title">Interaktive Rechner</h2>
+                        <p class="topic-label" data-i18n="calc.label">Planen Sie Ihre Finanzen</p>
+                    </div>
+                </div>
+                <div class="topic-body">
+                    <div class="info-note">
+                        <strong data-i18n="calc.disclaimer.label">Hinweis:</strong> <span data-i18n="calc.disclaimer">Diese Rechner liefern Schätzungen zu Veranschaulichungszwecken. Für exakte Berechnungen verwenden Sie die offiziellen kantonalen Steuerrechner.</span>
+                    </div>
+
+                    <!-- Calculator: Pillar 3a Tax Savings -->
+                    <div class="calc-card" id="calc-3a">
+                        <h3 data-i18n="calc.3a.title">Säule 3a Steuerersparnis</h3>
+                        <div class="calc-inputs">
+                            <div class="calc-input-group">
+                                <label for="calc-canton" data-i18n="calc.3a.canton">Kanton</label>
+                                <select id="calc-canton"></select>
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-income" data-i18n="calc.3a.income">Steuerbares Einkommen (CHF)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-income-slider" min="30000" max="300000" step="1000" value="100000">
+                                    <input type="number" id="calc-income" min="0" max="1000000" value="100000">
+                                </div>
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-contribution" data-i18n="calc.3a.contribution">3a-Beitrag (CHF)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-contribution-slider" min="0" max="7056" step="100" value="7056">
+                                    <input type="number" id="calc-contribution" min="0" max="7056" value="7056">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-output" id="calc-3a-result">
+                            <span class="calc-result-label" data-i18n="calc.3a.result">Geschätzte jährliche Steuerersparnis:</span>
+                            <span class="calc-result-value" id="calc-3a-value">CHF 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Calculator: Emergency Fund -->
+                    <div class="calc-card" id="calc-emergency">
+                        <h3 data-i18n="calc.emergency.title">Notgroschen-Rechner</h3>
+                        <div class="calc-inputs">
+                            <div class="calc-input-group">
+                                <label for="calc-rent" data-i18n="calc.emergency.rent">Monatliche Miete (CHF)</label>
+                                <input type="number" id="calc-rent" min="0" max="10000" value="1500" step="50">
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-insurance" data-i18n="calc.emergency.insurance">Versicherungsprämien (CHF)</label>
+                                <input type="number" id="calc-insurance" min="0" max="5000" value="400" step="10">
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-food" data-i18n="calc.emergency.food">Lebensmittel &amp; Einkäufe (CHF)</label>
+                                <input type="number" id="calc-food" min="0" max="5000" value="600" step="50">
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-transport" data-i18n="calc.emergency.transport">Transport (CHF)</label>
+                                <input type="number" id="calc-transport" min="0" max="3000" value="200" step="10">
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-other" data-i18n="calc.emergency.other">Sonstige Ausgaben (CHF)</label>
+                                <input type="number" id="calc-other" min="0" max="10000" value="300" step="50">
+                            </div>
+                        </div>
+                        <div class="calc-output" id="calc-emergency-result">
+                            <span class="calc-result-label" data-i18n="calc.emergency.result">Ihr Notgroschen-Ziel:</span>
+                            <span class="calc-result-value" id="calc-emergency-value">CHF 0 – CHF 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Calculator: Franchise Optimizer -->
+                    <div class="calc-card" id="calc-franchise">
+                        <h3 data-i18n="calc.franchise.title">Krankenkassen-Franchise Optimierer</h3>
+                        <div class="calc-inputs">
+                            <div class="calc-input-group">
+                                <label for="calc-healthcare" data-i18n="calc.franchise.costs">Erwartete jährliche Gesundheitskosten (CHF)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-healthcare-slider" min="0" max="10000" step="100" value="1000">
+                                    <input type="number" id="calc-healthcare" min="0" max="50000" value="1000">
+                                </div>
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-premium-diff" data-i18n="calc.franchise.premiumDiff">Monatliche Prämiendifferenz 300 vs 2500 (CHF)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-premium-diff-slider" min="50" max="300" step="10" value="150">
+                                    <input type="number" id="calc-premium-diff" min="0" max="500" value="150">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-output franchise-comparison" id="calc-franchise-result">
+                            <div class="franchise-col">
+                                <h4>Franchise CHF 300</h4>
+                                <div class="franchise-detail">
+                                    <span data-i18n="calc.franchise.premium">Prämie/Jahr:</span>
+                                    <span id="franchise-premium-300">CHF 0</span>
+                                </div>
+                                <div class="franchise-detail">
+                                    <span data-i18n="calc.franchise.oop">Eigenkosten:</span>
+                                    <span id="franchise-oop-300">CHF 0</span>
+                                </div>
+                                <div class="franchise-detail franchise-total">
+                                    <span data-i18n="calc.franchise.totalCost">Total:</span>
+                                    <span id="franchise-total-300">CHF 0</span>
+                                </div>
+                            </div>
+                            <div class="franchise-vs">vs</div>
+                            <div class="franchise-col">
+                                <h4>Franchise CHF 2'500</h4>
+                                <div class="franchise-detail">
+                                    <span data-i18n="calc.franchise.premium">Prämie/Jahr:</span>
+                                    <span id="franchise-premium-2500">CHF 0</span>
+                                </div>
+                                <div class="franchise-detail">
+                                    <span data-i18n="calc.franchise.oop">Eigenkosten:</span>
+                                    <span id="franchise-oop-2500">CHF 0</span>
+                                </div>
+                                <div class="franchise-detail franchise-total">
+                                    <span data-i18n="calc.franchise.totalCost">Total:</span>
+                                    <span id="franchise-total-2500">CHF 0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-output" id="franchise-verdict">
+                            <span class="calc-result-label" data-i18n="calc.franchise.result">Empfehlung:</span>
+                            <span class="calc-result-value" id="franchise-verdict-text"></span>
+                        </div>
+                    </div>
+
+                    <!-- Calculator: Compound Growth -->
+                    <div class="calc-card" id="calc-compound">
+                        <h3 data-i18n="calc.compound.title">Zinseszins-Rechner</h3>
+                        <div class="calc-inputs">
+                            <div class="calc-input-group">
+                                <label for="calc-monthly" data-i18n="calc.compound.monthly">Monatliche Investition (CHF)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-monthly-slider" min="100" max="5000" step="100" value="500">
+                                    <input type="number" id="calc-monthly" min="0" max="50000" value="500">
+                                </div>
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-return" data-i18n="calc.compound.return">Erwartete jährliche Rendite (%)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-return-slider" min="1" max="12" step="0.5" value="7">
+                                    <input type="number" id="calc-return" min="0" max="30" step="0.5" value="7">
+                                </div>
+                            </div>
+                            <div class="calc-input-group">
+                                <label for="calc-years" data-i18n="calc.compound.horizon">Anlagehorizont (Jahre)</label>
+                                <div class="calc-slider-row">
+                                    <input type="range" id="calc-years-slider" min="1" max="50" step="1" value="30">
+                                    <input type="number" id="calc-years" min="1" max="100" value="30">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calc-output compound-results">
+                            <div class="compound-stat">
+                                <span class="calc-result-label" data-i18n="calc.compound.invested">Total investiert:</span>
+                                <span class="calc-result-value" id="compound-invested">CHF 0</span>
+                            </div>
+                            <div class="compound-stat">
+                                <span class="calc-result-label" data-i18n="calc.compound.growth">Zinseszins-Gewinn:</span>
+                                <span class="calc-result-value accent-green" id="compound-growth">CHF 0</span>
+                            </div>
+                            <div class="compound-stat">
+                                <span class="calc-result-label" data-i18n="calc.compound.value">Endwert:</span>
+                                <span class="calc-result-value" id="compound-total">CHF 0</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="compound-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Canton Tax Comparison -->
+    <section class="topic-section" id="canton-taxes">
+        <div class="container">
+            <div class="topic-card reveal">
+                <div class="topic-header">
+                    <span class="topic-number">10</span>
+                    <div class="topic-icon">&#127963;</div>
+                    <div>
+                        <h2 data-i18n="canton.title">Kantonaler Steuervergleich</h2>
+                        <p class="topic-label" data-i18n="canton.label">Steuersätze in der Schweiz vergleichen</p>
+                    </div>
+                </div>
+                <div class="topic-body">
+                    <div class="table-wrapper">
+                        <table class="tax-table" id="canton-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="canton.header.canton">Kanton</th>
+                                    <th data-i18n="canton.header.income80">CHF 80'000</th>
+                                    <th data-i18n="canton.header.income120">CHF 120'000</th>
+                                    <th data-i18n="canton.header.income200">CHF 200'000</th>
+                                </tr>
+                            </thead>
+                            <tbody id="canton-table-body"></tbody>
+                        </table>
+                    </div>
+                    <div class="info-note" style="margin-top: 20px;">
+                        <strong data-i18n="info.label">Gut zu wissen:</strong> <span data-i18n="canton.disclaimer">Ungefähre kombinierte Steuersätze (Bund + Kanton + Gemeinde) für eine ledige, kinderlose Person in der Kantonshauptstadt. Für genaue Berechnungen verwenden Sie die offiziellen kantonalen Steuerrechner.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Market History -->
+    <section class="topic-section" id="market-history">
+        <div class="container">
+            <div class="topic-card reveal">
+                <div class="topic-header">
+                    <span class="topic-number">11</span>
+                    <div class="topic-icon">&#128200;</div>
+                    <div>
+                        <h2 data-i18n="market.title">Historische Marktentwicklung</h2>
+                        <p class="topic-label" data-i18n="market.label">Langfristige Indexrenditen in CHF</p>
+                    </div>
+                </div>
+                <div class="topic-body">
+                    <div class="chart-controls">
+                        <button class="chart-btn active" id="btn-normalized" data-i18n="market.normalized">Normalisiert (Basis 100)</button>
+                        <button class="chart-btn" id="btn-absolute" data-i18n="market.absolute">Absolut</button>
+                    </div>
+                    <div class="chart-legend" id="market-legend">
+                        <span class="legend-item active" data-series="SMI"><span class="legend-color" style="background: var(--accent-blue)"></span>SMI</span>
+                        <span class="legend-item active" data-series="SPX"><span class="legend-color" style="background: var(--accent-green)"></span>S&P 500</span>
+                        <span class="legend-item active" data-series="UKX"><span class="legend-color" style="background: var(--accent-red)"></span>FTSE 100</span>
+                        <span class="legend-item active" data-series="SX5E"><span class="legend-color" style="background: var(--accent-purple)"></span>Euro Stoxx 50</span>
+                    </div>
+                    <div class="chart-container chart-container-large">
+                        <canvas id="market-chart"></canvas>
+                    </div>
+                    <div class="info-note" style="margin-top: 20px;">
+                        <strong data-i18n="info.label">Gut zu wissen:</strong> <span data-i18n="market.info">Alle Werte in CHF. Die historische Performance ist kein verlässlicher Indikator für zukünftige Ergebnisse. «Zeit im Markt» schlägt «Timing des Markts» — konsistentes, langfristiges Investieren lohnt sich.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 12: Financial Health Checklist -->
+    <section class="topic-section" id="checklist">
+        <div class="container">
+            <div class="topic-card reveal">
+                <div class="topic-header">
+                    <span class="topic-number">12</span>
+                    <div class="topic-icon">&#9989;</div>
+                    <div>
+                        <h2 data-i18n="check.title">Finanz-Gesundheitscheck</h2>
+                        <p class="topic-label" data-i18n="check.label">Verfolgen Sie Ihren Fortschritt</p>
+                    </div>
+                </div>
+                <div class="topic-body">
+                    <div class="checklist-progress">
+                        <div class="checklist-progress-bar" id="checklist-bar"></div>
+                    </div>
+                    <p class="checklist-progress-text" id="checklist-text">0 / 20 erledigt</p>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.budget">Budgetierung</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="budget-1"><span data-i18n="check.budget1">Ich erfasse monatlich meine Einnahmen und Ausgaben</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="budget-2"><span data-i18n="check.budget2">Meine Sparquote beträgt mindestens 20%</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.emergency">Notgroschen</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="ef-1"><span data-i18n="check.ef1">Ich habe 3-6 Monatsausgaben gespart</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="ef-2"><span data-i18n="check.ef2">Mein Notgroschen ist auf einem liquiden Konto</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.debt">Schulden</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="debt-1"><span data-i18n="check.debt1">Ich habe keine Konsumschulden (Kreditkarten, Kleinkredite)</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="debt-2"><span data-i18n="check.debt2">Ich verstehe meine Hypothekarstrategie</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.insurance">Versicherungen</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="ins-1"><span data-i18n="check.ins1">Ich vergleiche Krankenkassenprämien jährlich</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="ins-2"><span data-i18n="check.ins2">Ich habe eine Privathaftpflichtversicherung</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="ins-3"><span data-i18n="check.ins3">Ich habe keine gemischten Versicherungs-Anlageprodukte</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.pillars">3-Säulen-System</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="pillar-1"><span data-i18n="check.pillar1">Ich schöpfe meine Säule 3a jedes Jahr voll aus</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="pillar-2"><span data-i18n="check.pillar2">Ich habe meine AHV auf Beitragslücken geprüft</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="pillar-3"><span data-i18n="check.pillar3">Ich habe meinen Pensionskassenausweis gelesen</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="pillar-4"><span data-i18n="check.pillar4">Ich habe mehrere 3a-Konten für gestaffelten Bezug</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.investing">Investieren</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="invest-1"><span data-i18n="check.invest1">Ich investiere regelmässig in diversifizierte Indexfonds/ETFs</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="invest-2"><span data-i18n="check.invest2">Ich verstehe die Verrechnungssteuer</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.taxes">Steuern</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="tax-1"><span data-i18n="check.tax1">Ich mache alle zulässigen Steuerabzüge geltend</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="tax-2"><span data-i18n="check.tax2">Ich habe meine 3a-Bezugsstrategie geplant</span></label>
+                    </div>
+
+                    <div class="checklist-group">
+                        <h4 data-i18n="check.cat.estate">Nachlass</h4>
+                        <label class="checklist-item"><input type="checkbox" data-check="estate-1"><span data-i18n="check.estate1">Ich habe ein gültiges, handschriftliches Testament</span></label>
+                        <label class="checklist-item"><input type="checkbox" data-check="estate-2"><span data-i18n="check.estate2">Meine Begünstigungen sind aktuell</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 13: Resource Links -->
+    <section class="topic-section" id="resources">
+        <div class="container">
+            <div class="topic-card reveal">
+                <div class="topic-header">
+                    <span class="topic-number">13</span>
+                    <div class="topic-icon">&#128279;</div>
+                    <div>
+                        <h2 data-i18n="res.title">Nützliche Ressourcen</h2>
+                        <p class="topic-label" data-i18n="res.label">Offizielle Tools &amp; Links</p>
+                    </div>
+                </div>
+                <div class="topic-body">
+                    <div class="resource-grid">
+                        <div class="resource-category">
+                            <h4 data-i18n="res.cat.government">Behörden &amp; Offizielles</h4>
+                            <a href="https://www.admin.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">admin.ch</span>
+                                <span class="resource-desc" data-i18n="res.admin">Schweizerische Bundesverwaltung</span>
+                            </a>
+                            <a href="https://www.seco.admin.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">SECO</span>
+                                <span class="resource-desc" data-i18n="res.seco">Staatssekretariat für Wirtschaft</span>
+                            </a>
+                            <a href="https://www.finma.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">FINMA</span>
+                                <span class="resource-desc" data-i18n="res.finma">Finanzmarktaufsicht</span>
+                            </a>
+                        </div>
+                        <div class="resource-category">
+                            <h4 data-i18n="res.cat.retirement">Altersvorsorge</h4>
+                            <a href="https://www.ahv-iv.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">ahv-iv.ch</span>
+                                <span class="resource-desc" data-i18n="res.ahv">AHV-Informationen &amp; Kontoauszug</span>
+                            </a>
+                            <a href="https://www.bsv.admin.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">BSV</span>
+                                <span class="resource-desc" data-i18n="res.bsv">Bundesamt für Sozialversicherungen</span>
+                            </a>
+                        </div>
+                        <div class="resource-category">
+                            <h4 data-i18n="res.cat.insurance">Versicherungen</h4>
+                            <a href="https://www.priminfo.admin.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">Priminfo</span>
+                                <span class="resource-desc" data-i18n="res.priminfo">Offizieller Krankenkassenvergleich</span>
+                            </a>
+                        </div>
+                        <div class="resource-category">
+                            <h4 data-i18n="res.cat.investing">Investieren</h4>
+                            <a href="https://www.viac.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">VIAC</span>
+                                <span class="resource-desc" data-i18n="res.viac">Säule 3a Anlagelösung</span>
+                            </a>
+                            <a href="https://www.finpension.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">Finpension</span>
+                                <span class="resource-desc" data-i18n="res.finpension">Säule 3a &amp; Freizügigkeit</span>
+                            </a>
+                            <a href="https://www.frankly.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">Frankly</span>
+                                <span class="resource-desc" data-i18n="res.frankly">Säule 3a von der Zürcher Kantonalbank</span>
+                            </a>
+                            <a href="https://www.justetf.com" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">justETF</span>
+                                <span class="resource-desc" data-i18n="res.justetf">ETF-Suche &amp; Vergleich</span>
+                            </a>
+                        </div>
+                        <div class="resource-category">
+                            <h4 data-i18n="res.cat.tax">Steuern</h4>
+                            <a href="https://www.estv.admin.ch" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-name">ESTV</span>
+                                <span class="resource-desc" data-i18n="res.estv">Eidgenössische Steuerverwaltung &amp; Steuerrechner</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -306,15 +724,17 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-disclaimer">
-                <p><strong>Disclaimer:</strong> This website is for educational purposes only. It does not constitute financial, investment, or tax advice. The information presented is general in nature and may not apply to your individual circumstances. Laws, regulations, and financial products change over time — always verify current information. Consult a qualified financial advisor, tax professional, or legal expert before making financial decisions.</p>
+                <p data-i18n-html="footer.disclaimer"><strong>Haftungsausschluss:</strong> Diese Website dient ausschliesslich Bildungszwecken. Sie stellt keine Finanz-, Anlage- oder Steuerberatung dar. Die dargestellten Informationen sind allgemeiner Natur und treffen möglicherweise nicht auf Ihre individuelle Situation zu. Gesetze, Vorschriften und Finanzprodukte ändern sich im Laufe der Zeit — überprüfen Sie stets aktuelle Informationen. Konsultieren Sie einen qualifizierten Finanzberater, Steuerexperten oder Rechtsanwalt, bevor Sie finanzielle Entscheidungen treffen.</p>
             </div>
             <div class="footer-bottom">
                 <p class="footer-logo">PF<span class="accent">.</span>ch</p>
-                <p class="footer-copy">Personal Finance Fundamentals — Swiss Edition</p>
+                <p class="footer-copy" data-i18n="footer.copy">Persönliche Finanzen Grundlagen — Schweizer Ausgabe</p>
             </div>
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
