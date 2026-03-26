@@ -22,6 +22,8 @@ import matplotlib.dates as mdates
 from datetime import datetime
 import warnings
 
+from cache import cached_download
+
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # =============================================================================
@@ -493,11 +495,12 @@ EM_DEFAULT_RATE = 0.05  # rough average EM policy rate
 # Data download functions
 # =============================================================================
 
-def download_etf_prices():
+def download_etf_prices(start_date=None, end_date=None, log=print):
     """Download adjusted close prices for all ETF proxies."""
+    start_date = start_date or START_DATE
+    end_date = end_date or END_DATE
     tickers = list(ETF_TICKERS.values())
-    print(f"Downloading ETF prices: {tickers}")
-    data = yf.download(tickers, start=START_DATE, end=END_DATE, auto_adjust=True)
+    data = cached_download(tickers, start_date, end_date, tag="etf", log=log)
 
     # Handle both single and multi-ticker return formats
     if isinstance(data.columns, pd.MultiIndex):
@@ -512,20 +515,22 @@ def download_etf_prices():
     for name, ticker in ETF_TICKERS.items():
         if name in prices.columns:
             first_valid = prices[name].first_valid_index()
-            if first_valid is not None and first_valid > pd.Timestamp(START_DATE):
-                print(f"  WARNING: {name} ({ticker}) data starts {first_valid.date()}, "
-                      f"not {START_DATE}")
+            if first_valid is not None and first_valid > pd.Timestamp(start_date):
+                log(f"  WARNING: {name} ({ticker}) data starts {first_valid.date()}, "
+                    f"not {start_date}")
 
     return prices
 
 
-def download_fx_rates(currencies):
+def download_fx_rates(currencies, start_date=None, end_date=None, log=print):
     """Download daily FX rates vs CHF for the given currency codes.
 
     Uses direct XXXCHF pairs for major currencies, and computes cross-rates
     via USD (XXXCHF = USDCHF / USDXXX) for exotic/EM currencies to avoid
     data quality issues in yfinance direct exotic/CHF pairs.
     """
+    start_date = start_date or START_DATE
+    end_date = end_date or END_DATE
     direct_needed = {}
     cross_needed = {}
     unavailable = []
@@ -541,16 +546,14 @@ def download_fx_rates(currencies):
             unavailable.append(ccy)
 
     if unavailable:
-        print(f"  WARNING: No FX ticker for {unavailable} — treating as unhedged")
+        log(f"  WARNING: No FX ticker for {unavailable} — treating as unhedged")
 
     # Download direct CHF pairs
     all_tickers = list(direct_needed.values()) + list(cross_needed.values())
     if not all_tickers:
         return pd.DataFrame()
 
-    print(f"Downloading FX rates: {list(direct_needed.keys())} (direct CHF), "
-          f"{list(cross_needed.keys())} (via USD cross-rate)")
-    data = yf.download(all_tickers, start=START_DATE, end=END_DATE, auto_adjust=True)
+    data = cached_download(all_tickers, start_date, end_date, tag="fx", log=log)
 
     if isinstance(data.columns, pd.MultiIndex):
         close = data["Close"]
@@ -577,14 +580,15 @@ def download_fx_rates(currencies):
     # Check for missing/empty columns
     for ccy in list(fx.columns):
         if fx[ccy].dropna().empty:
-            print(f"  WARNING: No data for {ccy}/CHF — treating as unhedged")
+            log(f"  WARNING: No data for {ccy}/CHF — treating as unhedged")
             fx = fx.drop(columns=[ccy])
 
     return fx
 
 
-def build_rate_series(currencies, index):
+def build_rate_series(currencies, index, start_date=None, log=print):
     """Build a DataFrame of daily interest rates for each currency, aligned to index."""
+    start_date = start_date or START_DATE
     rates = pd.DataFrame(index=index)
 
     for ccy in currencies:
@@ -595,8 +599,8 @@ def build_rate_series(currencies, index):
             entries = POLICY_RATES[ccy]
         else:
             # Use EM default rate for exotic currencies
-            entries = [(START_DATE, EM_DEFAULT_RATE)]
-            print(f"  Using default rate ({EM_DEFAULT_RATE:.1%}) for {ccy}")
+            entries = [(start_date, EM_DEFAULT_RATE)]
+            log(f"  Using default rate ({EM_DEFAULT_RATE:.1%}) for {ccy}")
 
         # Build series from step function
         rate_series = pd.Series(dtype=float, index=index)
@@ -794,20 +798,32 @@ def print_summary(results):
 # Plotting
 # =============================================================================
 
-def plot_cumulative_returns(results):
-    """Plot cumulative return comparison: one subplot per index."""
-    n = len(results)
-    fig, axes = plt.subplots(n, 1, figsize=(12, 5 * n), sharex=False)
-    if n == 1:
-        axes = [axes]
+STRATEGY_COLORS = {
+    "Unhedged CHF": "#e74c3c",
+    "USD-hedged CHF": "#3498db",
+    "Basket-hedged CHF": "#2ecc71",
+}
 
-    colors = {"Unhedged CHF": "#e74c3c", "USD-hedged CHF": "#3498db",
-              "Basket-hedged CHF": "#2ecc71"}
+
+def plot_cumulative_returns(results, fig=None, save_path="work/hedging_cumulative_returns.png"):
+    """Plot cumulative return comparison: one subplot per index.
+
+    If fig is provided, draws into it (for GUI embedding). Otherwise creates a new figure.
+    Returns the figure.
+    """
+    n = len(results)
+    if fig is None:
+        fig, axes = plt.subplots(n, 1, figsize=(12, 5 * n), sharex=False)
+    else:
+        fig.clear()
+        axes = [fig.add_subplot(n, 1, i + 1) for i in range(n)]
+    if n == 1:
+        axes = [axes] if not isinstance(axes, list) else axes
 
     for ax, (index_name, df) in zip(axes, results.items()):
         cum = (1 + df).cumprod() * 100  # indexed to 100
         for col in df.columns:
-            ax.plot(cum.index, cum[col], label=col, color=colors.get(col, "gray"),
+            ax.plot(cum.index, cum[col], label=col, color=STRATEGY_COLORS.get(col, "gray"),
                     linewidth=1.5)
         ax.set_title(f"{index_name} — Cumulative Return (indexed to 100)", fontsize=13)
         ax.set_ylabel("Value")
@@ -816,28 +832,34 @@ def plot_cumulative_returns(results):
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
         ax.xaxis.set_major_locator(mdates.YearLocator(2))
 
-    plt.tight_layout()
-    path = "work/hedging_cumulative_returns.png"
-    plt.savefig(path, dpi=150, bbox_inches="tight")
-    print(f"Saved: {path}")
-    plt.close()
+    fig.tight_layout()
+    if save_path:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
+        print(f"Saved: {save_path}")
+    return fig
 
 
-def plot_rolling_volatility(results, window=12):
-    """Plot rolling 12-month annualized volatility."""
+def plot_rolling_volatility(results, window=12, fig=None,
+                            save_path="work/hedging_rolling_volatility.png"):
+    """Plot rolling 12-month annualized volatility.
+
+    If fig is provided, draws into it (for GUI embedding). Otherwise creates a new figure.
+    Returns the figure.
+    """
     n = len(results)
-    fig, axes = plt.subplots(n, 1, figsize=(12, 5 * n), sharex=False)
+    if fig is None:
+        fig, axes = plt.subplots(n, 1, figsize=(12, 5 * n), sharex=False)
+    else:
+        fig.clear()
+        axes = [fig.add_subplot(n, 1, i + 1) for i in range(n)]
     if n == 1:
-        axes = [axes]
-
-    colors = {"Unhedged CHF": "#e74c3c", "USD-hedged CHF": "#3498db",
-              "Basket-hedged CHF": "#2ecc71"}
+        axes = [axes] if not isinstance(axes, list) else axes
 
     for ax, (index_name, df) in zip(axes, results.items()):
         rolling_vol = df.rolling(window).std() * np.sqrt(12) * 100  # in %
         for col in df.columns:
             ax.plot(rolling_vol.index, rolling_vol[col], label=col,
-                    color=colors.get(col, "gray"), linewidth=1.5)
+                    color=STRATEGY_COLORS.get(col, "gray"), linewidth=1.5)
         ax.set_title(f"{index_name} — Rolling {window}M Annualized Volatility", fontsize=13)
         ax.set_ylabel("Volatility (%)")
         ax.legend(loc="upper right")
@@ -845,51 +867,69 @@ def plot_rolling_volatility(results, window=12):
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
         ax.xaxis.set_major_locator(mdates.YearLocator(2))
 
-    plt.tight_layout()
-    path = "work/hedging_rolling_volatility.png"
-    plt.savefig(path, dpi=150, bbox_inches="tight")
-    print(f"Saved: {path}")
-    plt.close()
+    fig.tight_layout()
+    if save_path:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
+        print(f"Saved: {save_path}")
+    return fig
 
 
 # =============================================================================
-# Main
+# Backtest pipeline
 # =============================================================================
 
-def main():
-    # 1. Download ETF prices (USD-denominated)
-    etf_prices = download_etf_prices()
+def run_backtest(start_date=None, end_date=None, log=print):
+    """Run the full backtest pipeline and return results dict.
 
-    # 2. Collect all currencies needed across all indices
+    Args:
+        start_date: Start date string (YYYY-MM-DD). Defaults to START_DATE.
+        end_date: End date string (YYYY-MM-DD). Defaults to END_DATE.
+        log: Logging function (print for CLI, or a GUI callback).
+
+    Returns:
+        dict mapping index name -> DataFrame of monthly returns,
+        or None if no results could be computed.
+    """
+    log("Downloading ETF prices...")
+    etf_prices = download_etf_prices(start_date, end_date, log=log)
+
     all_currencies = set()
     for weights in CURRENCY_WEIGHTS.values():
         all_currencies.update(weights.keys())
     all_currencies.discard("CHF")
     all_currencies.discard("OTHER")
 
-    # 3. Download FX rates vs CHF
-    fx_rates = download_fx_rates(all_currencies)
+    log("Downloading FX rates...")
+    fx_rates = download_fx_rates(all_currencies, start_date, end_date, log=log)
 
-    # 4. Build interest rate series
-    print("Building interest rate series...")
-    rates = build_rate_series(all_currencies, etf_prices.index)
+    log("Building interest rate series...")
+    rates = build_rate_series(all_currencies, etf_prices.index,
+                              start_date=start_date, log=log)
 
-    # 5. Compute hedged and unhedged returns
-    print("Computing hedged returns...")
+    log("Computing hedged returns...")
     results = compute_hedged_returns(etf_prices, fx_rates, rates, CURRENCY_WEIGHTS)
 
     if not results:
-        print("ERROR: No results computed. Check data availability.")
+        log("ERROR: No results computed. Check data availability.")
+        return None
+
+    return results
+
+
+# =============================================================================
+# Main (CLI entry point)
+# =============================================================================
+
+def main():
+    results = run_backtest()
+    if results is None:
         return
 
-    # 6. Print summary
     print_summary(results)
-
-    # 7. Generate plots
     plot_cumulative_returns(results)
     plot_rolling_volatility(results)
+    plt.close("all")
 
-    # 8. Save detailed results to CSV
     for index_name, df in results.items():
         safe_name = index_name.replace(" ", "_").lower()
         path = f"work/hedging_{safe_name}_monthly_returns.csv"
